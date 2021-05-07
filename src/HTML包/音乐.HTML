@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="#" />
+    <style>
+        body {
+            margin: 0;
+        }
+
+        video {
+            position: absolute;
+            bottom: -200px;
+            right: 0;
+            z-index: -99;
+            /*  -webkit-filter:grayscale(20%); */
+        }
+
+        #title {
+            color: black;
+            font-size: 50px;
+            margin-top: 0;
+            margin-left: 38%;
+            z-index: 10;
+        }
+
+        #juli {
+            margin-top: 12%;
+        }
+
+        #name {
+            color: red;
+            font-size: 25px;
+            margin-left: 18%;
+            position: static;
+            z-index: 10;
+        }
+
+        audio {
+            margin-left: 8%;
+            width: 400px;
+            height: 55px;
+        }
+
+        #btn {
+            margin-left: 85px;
+        }
+
+        button {
+            color: white;
+            background-color: grey;
+            width: 70px;
+            height: 50px;
+            margin-left: 35px;
+            z-index: 10;
+            border-radius: 25%;
+        }
+
+        button:hover {
+            color: white;
+            background-color: yellowgreen;
+        }
+
+        button:active { 
+            color: black;
+            background-color: darkorchid;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <h2 id="title">音乐盒</h2>
+        <br />
+        <div id="juli">
+            <i id="name">笑纳
+            </i>
+            <br />
+            <br />
+            <audio id="audio" src="../assets/笑纳.mp3" controls autoplay="true"></audio>
+        </div>
+    </div>
+    <br /><br />
+    <br /><br />
+    <div id="btn">
+        <button id="btn1">播放</button>
+        <button id="btn2">暂停</button>
+        <button id="btn3">上一首</button>
+        <button id="btn4">下一首</button>
+    </div>
+    <video autoplay muted loop style="width:100%">
+        <source src="../assets/yongen.mp4">
+    </video>
+    </div>
+    <script>
+        // 播放
+        btn1.onclick = function () {
+            if (audio !== null) {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+        }
+
+        // 暂停
+        btn2.onclick = function () {
+            if (audio !== null) {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+        }
+        var music = new Array();
+        music = [
+            "笑纳",
+            "简单的幸福",
+            "迷路",
+            "演员", 
+            "平凡之路"   
+        ];
+        var x =music.length;
+        var num = 0;
+        btn3.onclick = function () {
+            var name = document.getElementById("name");
+            num = (num + x-1) % x;
+            audio.src = "../assets/" + music[num] + ".mp3";
+            name.innerHTML = music[num];
+            audio.play();
+        };
+        btn4.onclick = function () {
+            var name = document.getElementById("name");
+            num = (num + x+1) % x;
+            audio.src = "../assets/" + music[num] + ".mp3";
+            name.innerHTML = music[num];
+            audio.play();
+        };
+        audio.addEventListener(
+            "ended",
+            function () {
+                btn4.onclick();
+            },
+            false
+        );
+    </script>
+
+</body>
+
+</html>
